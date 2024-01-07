@@ -1,25 +1,21 @@
 <!--
  * @Author: liyaopeng wylee_yy@163.com
- * @Date: 2023-11-17 09:46:00
+ * @Date: 2024-01-07 16:53:32
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-07 18:50:21
- * @FilePath: /management-system/src/App.vue
+ * @LastEditTime: 2024-01-07 16:53:38
+ * @FilePath: /management-system/src/views/home/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
-
-
 <template>
-  <router-view></router-view>
+  <div class=''>
+home
+  </div>
 </template>
 
-<script setup lang="ts">
-console.log('变量',import.meta.env);
+<script setup>
+import { ref, reactive, onMounted} from 'vue'
+
 </script>
-
-<style scoped>
-body{
-  width: 100%;
-  height: 100%;
-}
-
+<style scoped lang="scss">
+ 
 </style>
