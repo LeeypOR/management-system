@@ -69,8 +69,10 @@ const login = (formEl: FormInstance | undefined) => {
     loading.value = true;
     try {
       // 1.执行登录接口
-      const { data } = await loginApi({ ...loginForm, password: md5(loginForm.password) });
-      userStore.setToken(data.access_token);
+      const res = await loginApi({ ...loginForm, password: loginForm.password });
+      userStore.setToken(res.access_token);
+      console.log("res",res);
+      userStore.setUserInfo(res.data);
 
       // 2.添加动态路由
       await initDynamicRouter();
@@ -80,10 +82,11 @@ const login = (formEl: FormInstance | undefined) => {
       keepAliveStore.setKeepAliveName();
 
       // 4.跳转到首页
+      console.log("跳转跳转");
       router.push(HOME_URL);
       ElNotification({
         title: getTimeState(),
-        message: "欢迎登录 Geeker-Admin",
+        message: "欢迎登录 lyp-Admin",
         type: "success",
         duration: 3000
       });

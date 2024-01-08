@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-05 14:54:23
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-05 17:46:02
+ * @LastEditTime: 2024-01-08 14:17:32
  * @FilePath: /management-system/src/utils/request.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -25,7 +25,7 @@ import type { HYRequestConfig, HYRequestInterceptors } from "./type";
 // 引入loading
 import { ElLoading } from "element-plus/lib/index";
 import { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
-
+import { ResultData } from "@/api/interface";
 // 定义是否添加loading的初始值
 const DEFAULT_LOADING = true;
 
@@ -84,12 +84,13 @@ class HYRequest {
         console.log("所有的实例都有的拦截器：响应成功拦截");
 
         // 将loading移除【真正写项目的时候,后台返回数据成功之后,loading.close()即可，不需要添加定时器,此处只是做一个展示】
-        setTimeout(() => {
-          this.loading?.close();
-        }, 1000);
-
+        // setTimeout(() => {
+          
+        // }, 1000);
+        console.log(res,"res");
         const data = res.data;
-        if (data.returnCode === "-1001") {
+        this.loading?.close();
+        if (data?.code == "-1001") {
           console.log("请求失败~,错误信息");
         } else {
           return data;
