@@ -13,8 +13,9 @@
     "types": ["element-plus/global", "node"],
     "skipLibCheck": true,
     "noEmit": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
+      "@": ["src"],
       "@/*": ["src/*"]
     }
   },

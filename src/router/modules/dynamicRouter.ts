@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-07 17:02:40
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-07 18:41:13
+ * @LastEditTime: 2024-01-13 19:12:06
  * @FilePath: /management-system/src/router/modules/dynamicRouter.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -44,10 +44,9 @@ export const initDynamicRouter = async () => {
       if (item.component && typeof item.component == "string") {
         item.component = modules["/src/views" + item.component + ".vue"];
       }
-      if (item.meta.isFull) {
+      if (item.meta.isFull) { //全屏就放到外层路由
         router.addRoute(item as unknown as RouteRecordRaw);
       } else {
-        console.log(123312);
         router.addRoute("layout", item as unknown as RouteRecordRaw);
       }
     });

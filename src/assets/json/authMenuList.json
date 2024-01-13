@@ -14,6 +14,50 @@
         "isAffix": true,
         "isKeepAlive": true
       }
+    },
+    {
+      "path": "/auth",
+      "name": "auth",
+      "redirect": "/option/auth/menu",
+      "meta": {
+        "icon": "Lock",
+        "title": "权限管理",
+        "isLink": "",
+        "isHide": false,
+        "isFull": false,
+        "isAffix": false,
+        "isKeepAlive": true
+      },
+      "children": [
+        {
+          "path": "/auth/menu",
+          "name": "authMenu",
+          "component": "/option/auth/menu/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "菜单权限",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "path": "/auth/button",
+          "name": "authButton",
+          "component": "/option/auth/button/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "按钮权限",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": true
+          }
+        }
+      ]
     }
   ],
   "msg":"success"

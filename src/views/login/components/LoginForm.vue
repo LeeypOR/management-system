@@ -1,5 +1,10 @@
 <template>
-  <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" size="large">
+  <el-form
+    ref="loginFormRef"
+    :model="loginForm"
+    :rules="loginRules"
+    size="large"
+  >
     <el-form-item prop="username">
       <el-input v-model="loginForm.username" placeholder="用户名：admin / user">
         <template #prefix>
@@ -10,7 +15,13 @@
       </el-input>
     </el-form-item>
     <el-form-item prop="password">
-      <el-input v-model="loginForm.password" type="password" placeholder="密码：123456" show-password autocomplete="new-password">
+      <el-input
+        v-model="loginForm.password"
+        type="password"
+        placeholder="密码：123456"
+        show-password
+        autocomplete="new-password"
+      >
         <template #prefix>
           <el-icon class="el-input__icon">
             <lock />
@@ -20,8 +31,22 @@
     </el-form-item>
   </el-form>
   <div class="login-btn">
-    <el-button :icon="CircleClose" round size="large" @click="resetForm(loginFormRef)"> 重置 </el-button>
-    <el-button :icon="UserFilled" round size="large" type="primary" :loading="loading" @click="login(loginFormRef)">
+    <el-button
+      :icon="CircleClose"
+      round
+      size="large"
+      @click="resetForm(loginFormRef)"
+    >
+      重置
+    </el-button>
+    <el-button
+      :icon="UserFilled"
+      round
+      size="large"
+      type="primary"
+      :loading="loading"
+      @click="login(loginFormRef)"
+    >
       登录
     </el-button>
   </div>
@@ -37,6 +62,7 @@ import { ElNotification } from "element-plus";
 import { loginApi } from "@/api/modules/login";
 import { useUserStore } from "@/store/modules/user";
 import { useTabsStore } from "@/store/modules/tabs";
+import { useGlobalStore } from "@/store/modules/global";
 import { useKeepAliveStore } from "@/store/modules/keepAlive";
 import { initDynamicRouter } from "@/router/modules/dynamicRouter";
 import { CircleClose, UserFilled } from "@element-plus/icons-vue";
@@ -46,50 +72,58 @@ import md5 from "md5";
 const router = useRouter();
 const userStore = useUserStore();
 const tabsStore = useTabsStore();
+const globalStore = useGlobalStore();
 const keepAliveStore = useKeepAliveStore();
 
 type FormInstance = InstanceType<typeof ElForm>;
 const loginFormRef = ref<FormInstance>();
 const loginRules = reactive({
   username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-  password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+  password: [{ required: true, message: "请输入密码", trigger: "blur" }],
 });
 
 const loading = ref(false);
 const loginForm = reactive<Login.ReqLoginForm>({
   username: "",
-  password: ""
+  password: "",
 });
 
 // login
 const login = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate(async valid => {
+  formEl.validate(async (valid) => {
     if (!valid) return;
     loading.value = true;
     try {
       // 1.执行登录接口
-      const res = await loginApi({ ...loginForm, password: loginForm.password });
-      userStore.setToken(res.access_token);
-      console.log("res",res);
-      userStore.setUserInfo(res.data);
-
-      // 2.添加动态路由
-      await initDynamicRouter();
-
-      // 3.清空 tabs、keepAlive 数据
-      tabsStore.closeMultipleTab();
-      keepAliveStore.setKeepAliveName();
-
-      // 4.跳转到首页
-      console.log("跳转跳转");
-      router.push(HOME_URL);
-      ElNotification({
-        title: getTimeState(),
-        message: "欢迎登录 lyp-Admin",
-        type: "success",
-        duration: 3000
+      const res = await loginApi({
+        ...loginForm,
+        password: loginForm.password,
       });
+      if (res?.code === 200) {
+        userStore.setToken(res.access_token);
+        userStore.setUserInfo(res.data);
+
+        // 2.添加动态路由
+        await initDynamicRouter();
+
+        // 3.清空 tabs、keepAlive 数据
+        tabsStore.closeMultipleTab();
+        keepAliveStore.setKeepAliveName();
+
+        // 4.跳转到首页
+        console.log("跳转跳转");
+        router.push(HOME_URL);
+        globalStore.setGlobalState("layout","classic")
+        ElNotification({
+          title: getTimeState(),
+          message: "欢迎登录 lyp-Admin",
+          type: "success",
+          duration: 3000,
+        });
+      }else{
+        return 
+      }
     } finally {
       loading.value = false;
     }

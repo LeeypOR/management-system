@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2023-11-17 09:46:00
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-07 19:20:15
+ * @LastEditTime: 2024-01-13 19:04:32
  * @FilePath: /management-system/src/router/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -42,30 +42,27 @@ const router = createRouter({
  * @description 路由拦截 beforeEach
  * */
 router.beforeEach(async (to, from, next) => {
-  console.log(1.1);
   const userStore = useUserStore();
   const authStore = useAuthStore();
-  console.log(1);
   // 1.NProgress 开始
   NProgress.start();
 
   // 2.动态设置标题
   const title = import.meta.env.VITE_GLOB_APP_TITLE;
   document.title = to.meta.title ? `${to.meta.title} - ${title}` : title;
-  console.log(2,title);
+  
   // 3.判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
   if (to.path.toLocaleLowerCase() === LOGIN_URL) {
-    console.log(123);
-    if (userStore.token) return next(from.fullPath);
+    if (userStore.access_token) return next(from.fullPath);
     resetRouter();
     return next();
   }
-  console.log(456);
+  
   // 4.判断访问页面是否在路由白名单地址(静态路由)中，如果存在直接放行
   if (ROUTER_WHITE_LIST.includes(to.path)) return next();
-  console.log(2,to.path);
+  console.log("to.path",to.path);
   // 5.判断是否有 Token，没有重定向到 login 页面
-  if (!userStore.token) return next({ path: LOGIN_URL, replace: true });
+  if (!userStore.access_token) return next({ path: LOGIN_URL, replace: true });
 
   // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
   if (!authStore.authMenuListGet.length) {

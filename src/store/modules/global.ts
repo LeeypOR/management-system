@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-07 18:26:01
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-07 19:27:05
+ * @LastEditTime: 2024-01-13 17:02:58
  * @FilePath: /management-system/src/store/modules/global.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,7 +16,7 @@ export const useGlobalStore = defineStore({
   // 修改默认值之后，需清除 localStorage 数据
   state: (): GlobalState => ({
     // 布局模式 (纵向：vertical | 经典：classic | 横向：transverse | 分栏：columns)
-    layout: "vertical",
+    layout: "classic",
     // element 组件大小
     assemblySize: "default",
     // 当前系统语言

@@ -1,3 +1,11 @@
+/*
+ * @Author: liyaopeng wylee_yy@163.com
+ * @Date: 2024-01-07 16:52:27
+ * @LastEditors: liyaopeng wylee_yy@163.com
+ * @LastEditTime: 2024-01-13 19:09:13
+ * @FilePath: /management-system/src/router/modules/staticRouter.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { RouteRecordRaw } from "vue-router";
 import { HOME_URL, LOGIN_URL } from "@/config";
 
@@ -14,6 +22,14 @@ export const staticRouter: RouteRecordRaw[] = [
       title: "登录",
     },
   },
+  {
+    path:"/layout",
+    name:"layout",
+    component: () => import("@/layout/index.vue"),
+    // component: () => import("@/layout/indexAsync.vue"),
+    children:[],
+    redirect:HOME_URL
+  }
 ];
 
 /**

@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2023-11-17 09:46:00
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-08 11:04:43
+ * @LastEditTime: 2024-01-13 23:50:44
  * @FilePath: /management-system/src/main.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -33,7 +33,7 @@ import "@/styles/element.scss";
 // pinia store
 import pinia from "@/store";
 // vue i18n
-import I18n from "@/languages/index";
+// import i18n from "@/languages/index";
 
 const app = createApp(App);
 
@@ -41,9 +41,10 @@ const app = createApp(App);
 Object.keys(Icons).forEach((key) => {
   app.component(key, Icons[key as keyof typeof Icons]);
 });
-app.use(ElementPlus);
-app.use(router);
-app.use(I18n);
-app.use(pinia);
+// app.use(ElementPlus);
+// app.use(router);
+// app.use(i18n);
+// app.use(pinia);
+app.use(ElementPlus).use(router).use(pinia).mount("#app")
 
-app.mount("#app");
+// app.mount("#app");
