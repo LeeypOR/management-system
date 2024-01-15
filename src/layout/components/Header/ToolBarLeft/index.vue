@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup lang='ts' name=''>
+<script setup   name=''>
 import {useGlobalStore} from "@/store/modules/global"
 import CollapseIcon from '../components/CollapseIcon.vue';
 import Breadcrumb from '../components/Breadcrumb.vue';

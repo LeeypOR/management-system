@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-13 16:29:19
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-14 20:38:39
+ * @LastEditTime: 2024-01-15 14:58:05
  * @FilePath: /management-system/src/layout/LayoutClassic/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -62,7 +62,8 @@ const route = useRoute();
 const authStore = useAuthStore();
 const globalStore = useGlobalStore()
 
-const title = import.meta.env.VITE_GLOB_APP_TITLE;
+// const title = import.meta.env.VITE_GLOB_APP_TITLE;
+const title = "123";
 
 const menuList = computed(() => authStore.showMenuListGet);
 const activeMenu = computed(() =>

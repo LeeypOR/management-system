@@ -2,11 +2,11 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-07 00:19:40
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-08 14:02:34
+ * @LastEditTime: 2024-01-15 14:49:48
  * @FilePath: /management-system/src/api/modules/login.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { Login } from "@/api/interface/index";
+
 import authButtonList from "@/assets/json/authButtonList.json";
 import authMenuList from "@/assets/json/authMenuList.json";
 import http from "@/utils/invoking";
@@ -14,8 +14,8 @@ import http from "@/utils/invoking";
  * @name 登录模块
  */
 // 用户登录
-export const loginApi = (data: Login.ReqLoginForm) => {
-  return http.post<Login.ResLogin>({
+export const loginApi = (data) => {
+  return http.post({
     url: "/api/login",
     data,
   });

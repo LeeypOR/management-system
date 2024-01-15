@@ -2,13 +2,12 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-07 17:02:40
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-13 19:12:06
+ * @LastEditTime: 2024-01-15 14:52:29
  * @FilePath: /management-system/src/router/modules/dynamicRouter.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import router from "@/router/index";
 import { LOGIN_URL } from "@/config";
-import { RouteRecordRaw } from "vue-router";
 import { ElNotification } from "element-plus";
 import { useAuthStore } from "@/store/modules/auth";
 import { useUserStore } from "@/store/modules/user";
@@ -45,9 +44,9 @@ export const initDynamicRouter = async () => {
         item.component = modules["/src/views" + item.component + ".vue"];
       }
       if (item.meta.isFull) { //全屏就放到外层路由
-        router.addRoute(item as unknown as RouteRecordRaw);
+        router.addRoute(item);
       } else {
-        router.addRoute("layout", item as unknown as RouteRecordRaw);
+        router.addRoute("layout", item);
       }
     });
   } catch (error) {

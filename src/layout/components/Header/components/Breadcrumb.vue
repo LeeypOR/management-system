@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-13 19:41:52
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-13 21:23:17
+ * @LastEditTime: 2024-01-15 14:58:59
  * @FilePath: /management-system/src/layout/components/Header/components/Breadcrumb.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -46,7 +46,7 @@ const breadcrumbList = computed(() => {
 });
 
 // Click Breadcrumb
-const onBreadcrumbClick = (item:any, index: number) => {
+const onBreadcrumbClick = (item, index) => {
   if (index !== breadcrumbList.value.length - 1) router.push(item.path);
 };
 </script>

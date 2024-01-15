@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script setup lang='ts' name=''>
+<script setup   name=''>
 import { ref, reactive, onMounted,computed} from 'vue'
 import { useRoute } from 'vue-router';
 import {useUserStore} from '@/store/modules/user';

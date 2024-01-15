@@ -8,14 +8,10 @@
  */
 import hyRequest from "../utils/invoking";
 
-interface DataType {
-  data: any;
-  code: number;
-  success: string;
-}
 
-export function getData(params?: Object, data?: Object) {
-  return hyRequest.get<DataType>({
+
+export function getData(params, data) {
+  return hyRequest.get({
     url: "home/multidata",
     data,
     params

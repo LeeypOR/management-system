@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-14 18:51:22
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-14 20:25:02
+ * @LastEditTime: 2024-01-15 14:59:48
  * @FilePath: /management-system/src/layout/components/Main/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -21,7 +21,7 @@
   </el-footer>
 </template>
 
-<script setup lang='ts'> 
+<script setup  > 
 import { ref, reactive, onBeforeUnmount,provide} from 'vue';
 import { storeToRefs } from "pinia";
 import { useDebounceFn } from "@vueuse/core";
@@ -37,7 +37,7 @@ const { keepAliveName } = storeToRefs(keepAliveStore);
 
 // 注入刷新页面方法
 const isRouterShow = ref(true);
-const refreshCurrentPage = (val: boolean) => (isRouterShow.value = val);
+const refreshCurrentPage = (val) => (isRouterShow.value = val);
 provide("refresh", refreshCurrentPage);
 
  

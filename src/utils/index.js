@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-07 00:09:57
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-07 19:23:08
+ * @LastEditTime: 2024-01-15 14:32:48
  * @FilePath: /management-system/src/utils/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,9 +13,9 @@
  * @returns {Array}
  */
 export function getFlatMenuList(
-  menuList: Menu.MenuOptions[]
-): Menu.MenuOptions[] {
-  let newMenuList: Menu.MenuOptions[] = JSON.parse(JSON.stringify(menuList));
+  menuList
+) {
+  let newMenuList = JSON.parse(JSON.stringify(menuList));
   return newMenuList.flatMap((item) => [
     item,
     ...(item.children ? getFlatMenuList(item.children) : []),
@@ -27,8 +27,8 @@ export function getFlatMenuList(
  * @param {Array} menuList 菜单列表
  * @returns {Array}
  * */
-export function getShowMenuList(menuList: Menu.MenuOptions[]) {
-  let newMenuList: Menu.MenuOptions[] = JSON.parse(JSON.stringify(menuList));
+export function getShowMenuList(menuList) {
+  let newMenuList = JSON.parse(JSON.stringify(menuList));
   return newMenuList.filter((item) => {
     item.children?.length && (item.children = getShowMenuList(item.children));
     return !item.meta?.isHide;
@@ -43,9 +43,9 @@ export function getShowMenuList(menuList: Menu.MenuOptions[]) {
  * @returns {Object}
  */
 export const getAllBreadcrumbList = (
-  menuList: Menu.MenuOptions[],
+  menuList,
   parent = [],
-  result: { [key: string]: any } = {}
+  result = {}
 ) => {
   for (const item of menuList) {
     result[item.path] = [...parent, item];
@@ -60,7 +60,7 @@ export const getAllBreadcrumbList = (
  * @returns {String}
  */
 export function getBrowserLang() {
-  let browserLang = navigator.language ? navigator.language : navigator.browserLanguage as string;
+  let browserLang = navigator.language ? navigator.language : 'zh';
   let defaultBrowserLang = "";
   if (["cn", "zh", "zh-cn"].includes(browserLang.toLowerCase())) {
     defaultBrowserLang = "zh";

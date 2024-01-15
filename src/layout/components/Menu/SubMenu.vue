@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-13 10:59:45
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-14 18:44:53
+ * @LastEditTime: 2024-01-15 15:02:05
  * @FilePath: /management-system/src/layout/components/Menu/SubMenu.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -36,10 +36,15 @@
 import { ref, reactive, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-defineProps<{ menuList: Menu.MenuOptions[] }>();
+// defineProps<{ menuList }>();
+defineProps({
+  menuList:{
+    
+  }
+})
 
 const router = useRouter();
-const handleClickMenu = (subItem: Menu.MenuOptions) => {
+const handleClickMenu = (subItem) => {
   //当前菜单有外链则直接新标签跳转 否则跳至路由
   if (subItem.meta.isLink) return window.open(subItem.meta.isLink, "_blank");
   else router.push(subItem.path);

@@ -2,19 +2,18 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-07 18:26:01
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-13 17:02:58
+ * @LastEditTime: 2024-01-15 14:37:04
  * @FilePath: /management-system/src/store/modules/global.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { defineStore } from "pinia";
-import { GlobalState } from "@/store/interface";
 import { DEFAULT_PRIMARY } from "@/config";
 import piniaPersistConfig from "@/config/piniaPersist";
 
 export const useGlobalStore = defineStore({
   id: "lyp-global",
   // 修改默认值之后，需清除 localStorage 数据
-  state: (): GlobalState => ({
+  state: () => ({
     // 布局模式 (纵向：vertical | 经典：classic | 横向：transverse | 分栏：columns)
     layout: "classic",
     // element 组件大小
@@ -53,7 +52,7 @@ export const useGlobalStore = defineStore({
   getters: {},
   actions: {
     // Set GlobalState
-    setGlobalState(...args: ObjToKeyValArray<GlobalState>) {
+    setGlobalState(...args) {
       this.$patch({ [args[0]]: args[1] });
     }
   },

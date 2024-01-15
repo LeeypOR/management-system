@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2023-11-17 09:46:00
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-13 19:04:32
+ * @LastEditTime: 2024-01-15 14:40:29
  * @FilePath: /management-system/src/router/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -71,7 +71,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // 7.存储 routerName 做按钮权限筛选
-  authStore.setRouteName(to.name as string);
+  authStore.setRouteName(to.name);
 
   // 8.正常访问页面
   next();

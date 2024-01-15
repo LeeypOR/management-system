@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-05 14:54:23
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-08 14:17:32
+ * @LastEditTime: 2024-01-15 15:12:25
  * @FilePath: /management-system/src/utils/request.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -18,25 +18,19 @@
 
 // 对axios二次封装
 import axios from "axios";
-// 引入axios实例类型
-import type { AxiosInstance } from "axios";
-// 引入自己封装的接口
-import type { HYRequestConfig, HYRequestInterceptors } from "./type";
 // 引入loading
 import { ElLoading } from "element-plus/lib/index";
-import { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
-import { ResultData } from "@/api/interface";
 // 定义是否添加loading的初始值
 const DEFAULT_LOADING = true;
 
 // 封装axios类
 class HYRequest {
-  instance: AxiosInstance;
-  interceptors?: HYRequestInterceptors;
-  showLoading: boolean;
-  loading?: LoadingInstance;
+  instance
+  interceptors;
+  showLoading;
+  loading;
 
-  constructor(config: HYRequestConfig) {
+  constructor(config) {
     // 创建axios实例
     this.instance = axios.create(config);
     // 保存基本信息
@@ -111,7 +105,7 @@ class HYRequest {
 
   // 封装request请求
   // 声明接口泛型是从外部导入 , 但是在type.ts中已经初始化赋值了AxiosResponse类型
-  request<T>(config: HYRequestConfig<T>): Promise<T> {
+  request(config) {
     return new Promise((resolve, reject) => {
       // 1.单个请求对请求config的处理
       if (config.interceptors?.requestInterceptor) {
@@ -124,7 +118,7 @@ class HYRequest {
       }
 
       this.instance
-        .request<any, T>(config)
+        .request(config)
         .then((res) => {
           // 1.单个请求对数据的处理
           if (config.interceptors?.responseInterceptor) {
@@ -145,17 +139,17 @@ class HYRequest {
     });
   }
 
-  get<T>(config: HYRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: "GET" });
+  get(config) {
+    return this.request({ ...config, method: "GET" });
   }
-  post<T>(config: HYRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: "POST" });
+  post(config) {
+    return this.request({ ...config, method: "POST" });
   }
-  delete<T>(config: HYRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: "DELETE" });
+  delete(config) {
+    return this.request({ ...config, method: "DELETE" });
   }
-  patch<T>(config: HYRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: "PATCH" });
+  patch(config) {
+    return this.request({ ...config, method: "PATCH" });
   }
 }
 

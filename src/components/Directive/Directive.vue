@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2023-11-17 09:46:00
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-06 20:53:49
+ * @LastEditTime: 2024-01-15 14:48:32
  * @FilePath: /management-system/src/components/Directive/Directive.vue
  * @Description: 可拖动组件
 -->
@@ -20,16 +20,16 @@
 
 import {Directive,DirectiveBinding} from 'vue'
 
-const vMove:Directive<any,void> = (el:HTMLElement,binding:DirectiveBinding) =>{
+const vMove = (el,binding) =>{
   
-  let moveElement:HTMLDivElement = el.firstElementChild as HTMLDivElement
+  let moveElement = el.firstElementChild
 
   console.log(moveElement)
-  const mouseDown = (e:MouseEvent) =>{
+  const mouseDown = (e) =>{
     
     let X = e.clientX - el.offsetLeft
     let Y = e.clientY - el.offsetTop
-    const move = (e:MouseEvent) =>{
+    const move = (e) =>{
       console.log(e)
       el.style.left = e.clientX - X + 'px'
       el.style.top = e.clientY - Y + 'px'

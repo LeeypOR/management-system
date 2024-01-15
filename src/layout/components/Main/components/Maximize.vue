@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup lang='ts' name='maximize'>
+<script setup   name='maximize'>
 import { ref, reactive, onMounted} from 'vue'
 import { useRoute } from 'vue-router';
 import { useGlobalStore } from '@/store/modules/global';

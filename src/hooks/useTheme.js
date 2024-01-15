@@ -1,5 +1,4 @@
 import { storeToRefs } from "pinia";
-import { Theme } from "./interface";
 import { ElMessage } from "element-plus";
 import { DEFAULT_PRIMARY } from "@/config";
 import { useGlobalStore } from "@/store/modules/global";
@@ -17,7 +16,7 @@ export const useTheme = () => {
 
   // 切换暗黑模式 ==> 并带修改主题颜色、侧边栏、头部颜色
   const switchDark = () => {
-    const html = document.documentElement as HTMLElement;
+    const html = document.documentElement;
     if (isDark.value) html.setAttribute("class", "dark");
     else html.setAttribute("class", "");
     changePrimary(primary.value);
@@ -26,7 +25,7 @@ export const useTheme = () => {
   };
 
   // 修改主题颜色
-  const changePrimary = (val: string | null) => {
+  const changePrimary = (val) => {
     if (!val) {
       val = DEFAULT_PRIMARY;
       ElMessage({ type: "success", message: `主题颜色已重置为 ${DEFAULT_PRIMARY}` });
@@ -45,10 +44,10 @@ export const useTheme = () => {
   };
 
   // 灰色和弱色切换
-  const changeGreyOrWeak = (type: Theme.GreyOrWeakType, value: boolean) => {
-    const body = document.body as HTMLElement;
+  const changeGreyOrWeak = (type, value) => {
+    const body = document.body;
     if (!value) return body.removeAttribute("style");
-    const styles: Record<Theme.GreyOrWeakType, string> = {
+    const styles = {
       grey: "filter: grayscale(1)",
       weak: "filter: invert(80%)"
     };
@@ -59,11 +58,11 @@ export const useTheme = () => {
 
   // 设置菜单样式
   const setMenuTheme = () => {
-    let type: Theme.ThemeType = "light";
+    let type = "light";
     if (layout.value === "transverse" && headerInverted.value) type = "inverted";
     if (layout.value !== "transverse" && asideInverted.value) type = "inverted";
     if (isDark.value) type = "dark";
-    const theme = menuTheme[type!];
+    const theme = menuTheme[type];
     for (const [key, value] of Object.entries(theme)) {
       document.documentElement.style.setProperty(key, value);
     }
@@ -71,10 +70,10 @@ export const useTheme = () => {
 
   // 设置侧边栏样式
   const setAsideTheme = () => {
-    let type: Theme.ThemeType = "light";
+    let type= "light";
     if (asideInverted.value) type = "inverted";
     if (isDark.value) type = "dark";
-    const theme = asideTheme[type!];
+    const theme = asideTheme[type];
     for (const [key, value] of Object.entries(theme)) {
       document.documentElement.style.setProperty(key, value);
     }
@@ -83,10 +82,10 @@ export const useTheme = () => {
 
   // 设置头部样式
   const setHeaderTheme = () => {
-    let type: Theme.ThemeType = "light";
+    let type = "light";
     if (headerInverted.value) type = "inverted";
     if (isDark.value) type = "dark";
-    const theme = headerTheme[type!];
+    const theme = headerTheme[type];
     for (const [key, value] of Object.entries(theme)) {
       document.documentElement.style.setProperty(key, value);
     }
