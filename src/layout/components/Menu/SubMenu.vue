@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-13 10:59:45
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-14 18:44:53
+ * @LastEditTime: 2024-01-15 21:25:07
  * @FilePath: /management-system/src/layout/components/Menu/SubMenu.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -45,4 +45,61 @@ const handleClickMenu = (subItem: Menu.MenuOptions) => {
   else router.push(subItem.path);
 };
 </script>
-<style scoped lang="scss"></style>
+<style lang="scss">
+.el-sub-menu .el-sub-menu__title:hover {
+  color: var(--el-menu-hover-text-color) !important;
+  background-color: transparent !important;
+}
+.el-menu--collapse {
+  .is-active {
+    .el-sub-menu__title {
+      color: #ffffff !important;
+      background-color: var(--el-color-primary) !important;
+    }
+  }
+}
+.el-menu-item {
+  &:hover {
+    color: var(--el-menu-hover-text-color);
+  }
+  &.is-active {
+    color: var(--el-menu-active-color) !important;
+    background-color: var(--el-menu-active-bg-color) !important;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      content: "";
+      background-color: var(--el-color-primary);
+    }
+  }
+}
+.vertical,
+.classic,
+.transverse {
+  .el-menu-item {
+    &.is-active {
+      &::before {
+        left: 0;
+      }
+    }
+  }
+}
+.columns {
+  .el-menu-item {
+    &.is-active {
+      &::before {
+        right: 0;
+      }
+    }
+  }
+}
+.classic,
+.transverse {
+  #driver-highlighted-element-stage {
+    background-color: #606266 !important;
+  }
+}
+</style>

@@ -18,7 +18,7 @@
     {
       "path": "/auth",
       "name": "auth",
-      "redirect": "/option/auth/menu",
+      "redirect": "/auth/menu",
       "meta": {
         "icon": "Lock",
         "title": "权限管理",
