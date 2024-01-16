@@ -2,7 +2,7 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2023-11-17 09:46:00
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-13 23:50:44
+ * @LastEditTime: 2024-01-15 22:27:32
  * @FilePath: /management-system/src/main.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,6 +10,10 @@ import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
 
+// iconfont css
+import "@/assets/iconfont/iconfont.scss";
+// font css
+import "@/assets/fonts/font.scss";
 // reset style sheet
 import "@/styles/reset.scss";
 // CSS common style sheet

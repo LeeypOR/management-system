@@ -2,14 +2,15 @@
  * @Author: liyaopeng wylee_yy@163.com
  * @Date: 2024-01-13 19:21:45
  * @LastEditors: liyaopeng wylee_yy@163.com
- * @LastEditTime: 2024-01-14 18:17:37
+ * @LastEditTime: 2024-01-16 20:11:24
  * @FilePath: /management-system/src/layout/components/Header/ToolBarRight/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <div class='tool-bar-right'>
     <div class="header-icon">
-      
+      <SearchMenu id="searchMenu"/>
+      <ThemeSetting  id="themeSetting" />
     </div>
     <span class="username">{{ username }}</span>
     <Avatar/>
@@ -21,6 +22,8 @@ import { ref, reactive, onMounted,computed} from 'vue'
 import { useRoute } from 'vue-router';
 import {useUserStore} from '@/store/modules/user';
 import Avatar from '../components/Avatar.vue';
+import ThemeSetting from '../components/ThemeSetting.vue';
+import SearchMenu from '../components/SearchMenu.vue';
 
 const userStore = useUserStore();
 const username = computed(()=>userStore.userInfo.name)
